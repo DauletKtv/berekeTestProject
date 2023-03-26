@@ -3,13 +3,21 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const AddHareToUser = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [btnText, setBtnText] = useState("Назначить");
   const [formInfo, setFormInfo] = useState({ name: "", id: "" });
+  const navigate = useNavigate();
   const switchTab = (bool) => {
     setIsLogin(bool);
   };
+  useEffect(() => {
+    if (localStorage.getItem("isLoged") !== "true") {
+      navigate("/");
+    }
+  }, []);
   const addHareForUser = async () => {
     if (formInfo.name == "" && formInfo.id == "") {
       toast.error("Заполните все поля!");

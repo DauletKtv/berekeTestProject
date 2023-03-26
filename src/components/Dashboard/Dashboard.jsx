@@ -93,7 +93,8 @@ const Dashboard = () => {
       addNewHare.phoneNumber !== "" &&
       addNewHare.fio !== "" &&
       addNewHare.email !== "" &&
-      addNewHare.type !== ""
+      addNewHare.type !== "" &&
+      addNewHare.phoneNumber.length > 15
     ) {
       try {
         const response = await axios.post(
@@ -107,6 +108,7 @@ const Dashboard = () => {
           email: "",
           type: 0,
         });
+        toast.success("Вы успешно создали заявку!");
         document.querySelector(".modal-header span").click();
       } catch (error) {
         console.error(error);
@@ -276,7 +278,7 @@ const Dashboard = () => {
                     </td>
                     <td>{row.fio}</td>
                     <td>{row.email}</td>
-                    <td>+{row.phoneNumber}</td>
+                    <td>{phone_mask_cl(row.phoneNumber)}</td>
                     <td>{hareType(row.type)}</td>
                     <td>
                       <div className="dropdown">
@@ -369,44 +371,44 @@ const Dashboard = () => {
               </div>
               <div className="modal-body">
                 <form action="#" onSubmit={sendNewHare}>
-                  <div class="mb-3">
-                    <label for="phoneNumber" class="form-label">
+                  <div className="mb-3">
+                    <label for="phoneNumber" className="form-label">
                       Номер телефона
                     </label>
                     <input
                       name="phoneNumber"
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       value={phone_mask_cl(addNewHare.phoneNumber)}
                       onChange={handleChange}
                     />
                   </div>
-                  <div class="mb-3">
-                    <label for="fio" class="form-label">
+                  <div className="mb-3">
+                    <label for="fio" className="form-label">
                       ФИО
                     </label>
                     <input
                       name="fio"
                       type="text"
-                      class="form-control "
+                      className="form-control "
                       value={addNewHare.fio}
                       onChange={handleChange}
                     />
                   </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label">
+                  <div className="mb-3">
+                    <label for="email" className="form-label">
                       Почта
                     </label>
                     <input
                       name="email"
                       type="email"
-                      class="form-control "
+                      className="form-control "
                       value={addNewHare.email}
                       onChange={handleChange}
                     />
                   </div>
-                  <div class="mb-3">
-                    <label for="type" class="form-label">
+                  <div className="mb-3">
+                    <label for="type" className="form-label">
                       Тип заявки
                     </label>
                     <select
@@ -442,8 +444,11 @@ const Dashboard = () => {
                       </option>
                     </select>
                   </div>
-                  <div class="mb-3">
-                    <button type="submit" class="btn btn-primary classicBtn">
+                  <div className="mb-3">
+                    <button
+                      type="submit"
+                      className="btn btn-primary classicBtn"
+                    >
                       Создать
                     </button>
                   </div>
@@ -454,53 +459,53 @@ const Dashboard = () => {
         </div>
 
         <div
-          class="modal fade"
+          className="modal fade"
           id="addHareForEmployee"
           tabindex="-1"
           role="dialog"
           aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLongTitle">
                   Заявка №{clickedId}
                 </h5>
                 <button
                   type="button"
-                  class="close"
+                  className="close"
                   data-dismiss="modal"
                   aria-label="Close"
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="userName" class="form-label">
+              <div className="modal-body">
+                <div className="mb-3">
+                  <label for="userName" className="form-label">
                     Имя пользователя
                   </label>
                   <input
                     name="userName"
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={userNameHare}
                     onChange={(e) => setUserNameHare(e.target.value)}
                   />
                 </div>
               </div>
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={addRequestForUser}
                 >
                   Присвоить заяку
                 </button>
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  className="btn btn-secondary"
                   onClick={removeRequestForUser}
                 >
                   Убрать заявку
