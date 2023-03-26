@@ -6,7 +6,9 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsLoged } from "../../redux/loginSlice";
 import { useNavigate } from "react-router-dom";
-const Registration = () => {
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const Registration = ({ switchTab }) => {
   const [successAlet, setSuccsessAlert] = useState(false);
   const logState = useSelector((state) => state.log);
   const dispatch = useDispatch();
@@ -58,23 +60,26 @@ const Registration = () => {
                 /[^\d]/g,
                 ""
               )}&password=${values.password}`
-              // {
-              //   params: {
-              //     phoneNumber: values.phoneNumber.replace(/[^\d]/g, ""),
-              //     name: values.name,
-              //     password: values.password,
-              //   },
-              // }
             )
             .then((response) => {
               if (response.data == "Вы успешно зарегистрировались") {
-                setSuccsessAlert(true);
-                dispatch(setIsLoged(true));
-                navigate("/dashboard");
+                // setSuccsessAlert(true);
+                // dispatch(setIsLoged(true));
+                // navigate("/dashboard");
+                toast.success("Вы успешно зарегестрировались!", {
+                  position: toast.POSITION.BOTTOM_RIGHT,
+                  autoClose: 3000,
+                });
+                console.log(switchTab());
+                switchTab(true);
               }
             })
             .catch((error) => {
               console.log(error);
+              toast.error("Что то пошло не так!", {
+                position: toast.POSITION.BOTTOM_RIGHT,
+                autoClose: 3000,
+              });
             });
         }}
       >
@@ -85,6 +90,7 @@ const Registration = () => {
               <Field
                 name="name"
                 type="text"
+                placeholder="Введите имя"
                 className={
                   "form-control" +
                   (errors.name && touched.name ? " is-invalid" : "")
@@ -105,6 +111,7 @@ const Registration = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 name="phoneNumber"
+                placeholder="Введите номер"
                 type="tel"
                 className={
                   "form-control" +
@@ -124,6 +131,7 @@ const Registration = () => {
               <Field
                 name="password"
                 type="password"
+                placeholder="Введите пароль"
                 className={
                   "form-control" +
                   (errors.password && touched.password ? " is-invalid" : "")
@@ -140,6 +148,7 @@ const Registration = () => {
               <Field
                 name="confirmPassword"
                 type="password"
+                placeholder="Введите повторно пароль"
                 className={
                   "form-control" +
                   (errors.confirmPassword && touched.confirmPassword
@@ -153,7 +162,7 @@ const Registration = () => {
                 className="invalid-feedback"
               />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary registerBtn">
               Регистрация
             </button>
           </Form>

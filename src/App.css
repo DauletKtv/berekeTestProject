@@ -1,8 +1,22 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  /* width: 100vw; */
   margin: 0 auto;
   /* padding: 2rem; */
   text-align: center;
+  overflow: hidden;
+}
+.App {
+  /* display: flex; */
+}
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+input {
+  /* max-width: 200px; */
+  max-width: 100%;
 }
 .add-modal select {
   width: 100%;
@@ -18,16 +32,199 @@
 }
 .exitBtn {
   cursor: pointer;
+  justify-self: flex-end;
+  color: white;
+  background-color: #28a745;
+  margin-top: auto;
 }
 .activeBtn {
-  border: 1px black solid;
+  /* border: 0.5px black solid; */
+  color: white;
+  background-color: #28a745;
+}
+.activeBtn:focus {
+  border: none;
+  outline: none;
 }
 .logBlock {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   border-radius: 20px;
   margin-top: 20px;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 265px;
+}
+.registerBtn {
+  width: 100%;
 }
 .clickTd {
   color: #28a745;
+}
+.RegistrationPage {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 40px 0 50px; */
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://www.advantour.com/img/kazakhstan/images/nature.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #edeef0;
+}
+.RegistrationPage-block {
+  height: 100vh;
+  /* display: flex;
+  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
+  background: #ffffff80;
+  backdrop-filter: blur(10px);
+  padding: 25vh 50px 0;
+}
+.RegistrationPage-btn-controlers {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.RegistrationPage-titel {
+  font-size: 3.5rem;
+  text-align: center;
+  flex-grow: 1;
+  color: white;
+}
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  /* background-color: #1a1a1a; */
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #28a745;
+}
+/* button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */
+.table td,
+.table th {
+  text-align: left;
+}
+.emptyText {
+  width: 100%;
+}
+.emptyText h1 {
+  font-weight: 200;
+}
+.table-holder {
+  padding: 0 100px;
+}
+.selectStatus {
+  width: 105px;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  height: 100vh;
+  position: fixed;
+  background-image: url("https://www.advantour.com/img/kazakhstan/images/nature.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding: 30px 10px;
+}
+.DashboardBlock {
+  display: flex;
+  flex-grow: 1;
+  width: 90%;
+  margin-left: 10%;
+}
+.contentAllHare {
+  flex-grow: 1;
+}
+.searchNavBer {
+  justify-content: flex-end;
+  gap: 30px;
+  padding: 15px 100px 15px 0;
+}
+.links {
+  color: white;
+  padding: 0.4rem 0;
+  background-color: #28a7468c;
+  backdrop-filter: blur(5px);
+  margin-bottom: 10px;
+  position: relative;
+}
+.links:hover {
+  color: white;
+}
+.activeLink::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: white;
+}
+.AddHareToUser {
+  display: flex;
+  flex-grow: 1;
+  width: 90%;
+  margin-left: 10%;
+  /* padding: 10px; */
+  height: 100vh;
+  background: hsla(110, 89%, 74%, 1);
+
+  background: linear-gradient(
+    270deg,
+    hsla(110, 89%, 74%, 1) 0%,
+    hsla(118, 89%, 71%, 1) 44%,
+    hsla(115, 74%, 63%, 1) 73%,
+    hsla(116, 53%, 59%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    270deg,
+    hsla(110, 89%, 74%, 1) 0%,
+    hsla(118, 89%, 71%, 1) 44%,
+    hsla(115, 74%, 63%, 1) 73%,
+    hsla(116, 53%, 59%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    270deg,
+    hsla(110, 89%, 74%, 1) 0%,
+    hsla(118, 89%, 71%, 1) 44%,
+    hsla(115, 74%, 63%, 1) 73%,
+    hsla(116, 53%, 59%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#96F882", endColorstr="#76F772", GradientType=1 );
+}
+.AddHareToUserContent {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff80;
+  backdrop-filter: blur(10px);
+  padding: 25vh 50px 0;
+  align-items: center;
+}
+.AddHareToUserForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+  width: 230px;
 }

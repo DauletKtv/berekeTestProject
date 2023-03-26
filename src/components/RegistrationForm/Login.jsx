@@ -50,7 +50,7 @@ const Login = () => {
 
   return (
     <div className="container logBlock">
-      <h1>Вход</h1>
+      <h1>Авторизация</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -91,7 +91,7 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary registerBtn"
               disabled={isLoading}
             >
               {isLoading ? "Загрузка..." : "Войти"}
