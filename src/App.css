@@ -1,0 +1,33 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+}
+.add-modal select {
+  width: 100%;
+}
+.modal-dialog-centered {
+  max-width: 350px;
+}
+.row-id-tr {
+  cursor: pointer;
+}
+#addHareForEmployee .modal-footer {
+  justify-content: space-between;
+}
+.exitBtn {
+  cursor: pointer;
+}
+.activeBtn {
+  border: 1px black solid;
+}
+.logBlock {
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 15px;
+}
+.clickTd {
+  color: #28a745;
+}
