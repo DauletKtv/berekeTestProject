@@ -46,21 +46,25 @@ const Dashboard = () => {
     if (userNameHare == "") {
       toast.error("Заполните все поля!");
       return;
-    }
-    try {
-      const response = await axios.post(
-        `http://localhost:5136/Request/AddRequestToUser?ID=${clickedId}&Name=${userNameHare}`
-      );
-      setAddNewHare({
-        phoneNumber: "",
-        fio: "",
-        email: "",
-        type: 0,
-      });
-      document.querySelector("#addHareForEmployee .modal-header span").click();
-    } catch (error) {
-      toast.error("Данного пользователя нет!");
-      console.error(error);
+    } else {
+      try {
+        const response = await axios.post(
+          `http://localhost:5136/Request/AddRequestToUser?ID=${clickedId}&Name=${userNameHare}`
+        );
+        setAddNewHare({
+          phoneNumber: "",
+          fio: "",
+          email: "",
+          type: 0,
+        });
+        toast.success("Вы успешно назначили заявку!");
+        document
+          .querySelector("#addHareForEmployee .modal-header span")
+          .click();
+      } catch (error) {
+        toast.error("Данного пользователя нет!");
+        console.error(error);
+      }
     }
   };
   const removeRequestForUser = async (e) => {
@@ -68,15 +72,19 @@ const Dashboard = () => {
     if (userNameHare == "") {
       toast.error("Заполните все поля!");
       return;
-    }
-    try {
-      const response = await axios.post(
-        `http://localhost:5136/Request/RemoveRequestFromUser?ID=${clickedId}&Name=${userNameHare}`
-      );
-      document.querySelector("#addHareForEmployee .modal-header span").click();
-    } catch (error) {
-      toast.error("Данного пользователя не существует!");
-      console.error(error);
+    } else {
+      try {
+        const response = await axios.post(
+          `http://localhost:5136/Request/RemoveRequestFromUser?ID=${clickedId}&Name=${userNameHare}`
+        );
+        toast.success("Вы успешно сняли заявку!");
+        document
+          .querySelector("#addHareForEmployee .modal-header span")
+          .click();
+      } catch (error) {
+        toast.error("Данного пользователя не существует!");
+        console.error(error);
+      }
     }
   };
   const sendNewHare = async (e) => {
@@ -288,19 +296,36 @@ const Dashboard = () => {
                         >
                           <button
                             className="dropdown-item"
-                            onClick={() => handleStatusChange(row.id, 2)}
+                            onClick={() => {
+                              {
+                                handleStatusChange(row.id, 2);
+                                toast.success(
+                                  `Статус заявки №${row.id} изменен!`
+                                );
+                              }
+                            }}
                           >
                             Закрыть
                           </button>
                           <button
                             className="dropdown-item"
-                            onClick={() => handleStatusChange(row.id, 1)}
+                            onClick={() => {
+                              handleStatusChange(row.id, 1);
+                              toast.success(
+                                `Статус заявки №${row.id} изменен!`
+                              );
+                            }}
                           >
                             Отменить
                           </button>
                           <button
                             className="dropdown-item"
-                            onClick={() => handleStatusChange(row.id, 0)}
+                            onClick={() => {
+                              handleStatusChange(row.id, 0);
+                              toast.success(
+                                `Вы успешно удалили заявку! №${row.id}`
+                              );
+                            }}
                           >
                             Удалить
                           </button>
@@ -385,6 +410,7 @@ const Dashboard = () => {
                       Тип заявки
                     </label>
                     <select
+                      className="custom-select"
                       name="type"
                       id=""
                       value={addNewHare.type}
@@ -417,7 +443,7 @@ const Dashboard = () => {
                     </select>
                   </div>
                   <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary classicBtn">
                       Создать
                     </button>
                   </div>
@@ -468,7 +494,6 @@ const Dashboard = () => {
                 <button
                   type="button"
                   class="btn btn-primary"
-                  data-dismiss="modal"
                   onClick={addRequestForUser}
                 >
                   Присвоить заяку

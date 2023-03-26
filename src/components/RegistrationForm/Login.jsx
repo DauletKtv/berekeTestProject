@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsLoged } from "../../redux/loginSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,6 +39,7 @@ const Login = () => {
       if (response.data) {
         localStorage.setItem("isLoged", true);
         dispatch(setIsLoged(true));
+        toast.success("Добро пожаловать!");
         navigate("/dashboard");
       } else {
         setError("Не верный логи или пароль");

@@ -68,11 +68,13 @@ const AddHareToUser = () => {
             type="text"
             placeholder="Имя"
             value={formInfo.name}
+            className="form-control"
             onChange={(e) => setFormInfo({ ...formInfo, name: e.target.value })}
           />
           <input
             type="number"
             placeholder="Номер заявки"
+            className="form-control"
             value={formInfo.id}
             onChange={(e) => setFormInfo({ ...formInfo, id: e.target.value })}
           />
